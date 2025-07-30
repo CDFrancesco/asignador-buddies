@@ -21,6 +21,8 @@ except Exception:
     # Fallback si no encuentra el archivo
     st.set_page_config(page_title="Asignador de Matches", page_icon="👥", layout="wide")
 
+with st.sidebar:
+    st.image(ASSETS / "logo.png", use_column_width=True)
 
 st.set_page_config(page_title="Asignador de Matches", layout="wide")
 
