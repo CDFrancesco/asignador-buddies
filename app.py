@@ -3,6 +3,24 @@ from pathlib import Path
 import streamlit as st
 import pandas as pd
 import numpy as np
+from PIL import Image
+
+# --- Rutas a assets ---
+ASSETS = Path(__file__).parent / "assets"
+FAVICON = ASSETS / "logo.jpg"   # pon tu archivo aquí
+
+# --- Page config (favicon y título) ---
+try:
+    icon_img = Image.open(FAVICON)
+    st.set_page_config(
+        page_title="Asignador de Matches",
+        page_icon=icon_img,      # también puedes usar un emoji: "👥"
+        layout="wide"
+    )
+except Exception:
+    # Fallback si no encuentra el archivo
+    st.set_page_config(page_title="Asignador de Matches", page_icon="👥", layout="wide")
+
 
 st.set_page_config(page_title="Asignador de Matches", layout="wide")
 
