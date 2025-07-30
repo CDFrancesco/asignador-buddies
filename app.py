@@ -5,13 +5,14 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 
+
 # --- Buscar logo en varias rutas/nombres ---
 HERE = Path(__file__).parent
 LOGO_CANDIDATES = [
-    HERE / "assets" / "logo.png",
-    HERE / "assets" / "logo.jpg",
-    HERE / "logo.png",
-    HERE / "logo.jpg",
+    HERE / "assets" / "logo2.png",
+    HERE / "assets" / "logo2.jpg",
+    HERE / "logo2.png",
+    HERE / "logo2.jpg",
 ]
 LOGO_PATH = next((p for p in LOGO_CANDIDATES if p.exists()), None)
 
@@ -25,7 +26,7 @@ st.set_page_config(
 # --- Mostrar logo en la sidebar (si existe) ---
 with st.sidebar:
     if LOGO_PATH:
-        st.image(str(LOGO_PATH), use_column_width=True)
+        st.image(str(LOGO_PATH), use_container_width=True)
     else:
         st.caption("Puedes subir un logo como assets/logo.png o logo.jpg")
 
