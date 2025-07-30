@@ -5,24 +5,29 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 
-# --- Rutas a assets ---
-ASSETS = Path(__file__).parent / "assets"
-FAVICON = ASSETS / "logo.jpg"   # pon tu archivo aquí
+# --- Buscar logo en varias rutas/nombres ---
+HERE = Path(__file__).parent
+LOGO_CANDIDATES = [
+    HERE / "assets" / "logo.png",
+    HERE / "assets" / "logo.jpg",
+    HERE / "logo.png",
+    HERE / "logo.jpg",
+]
+LOGO_PATH = next((p for p in LOGO_CANDIDATES if p.exists()), None)
 
-# --- Page config (favicon y título) ---
-try:
-    icon_img = Image.open(FAVICON)
-    st.set_page_config(
-        page_title="Asignador de Matches",
-        page_icon=icon_img,      # también puedes usar un emoji: "👥"
-        layout="wide"
-    )
-except Exception:
-    # Fallback si no encuentra el archivo
-    st.set_page_config(page_title="Asignador de Matches", page_icon="👥", layout="wide")
+# --- Config de página (favicon + título) ---  # ¡debe ir antes de cualquier st.*
+st.set_page_config(
+    page_title="Asignador de Matches",
+    page_icon=str(LOGO_PATH) if LOGO_PATH else "👥",
+    layout="wide",
+)
 
+# --- Mostrar logo en la sidebar (si existe) ---
 with st.sidebar:
-    st.image(ASSETS / "logo.png", use_column_width=True)
+    if LOGO_PATH:
+        st.image(str(LOGO_PATH), use_column_width=True)
+    else:
+        st.caption("Puedes subir un logo como assets/logo.png o logo.jpg")
 
 st.set_page_config(page_title="Asignador de Matches", layout="wide")
 
