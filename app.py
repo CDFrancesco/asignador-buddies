@@ -52,7 +52,7 @@ def exportar_excel(asignaciones, disponibles):
 # =========================
 # Interfaz
 # =========================
-st.title("👥 Asignador Interactivo de Matches (Peruanos ↔ Extranjeros)")
+st.title("👥 Asignador de Matches (Peruanos ↔ Extranjeros)")
 
 with st.sidebar:
     st.header("⚙️ Configuración")
